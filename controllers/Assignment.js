@@ -106,3 +106,23 @@ exports.destroy = async (req, res) => {
         });
     });
 };
+
+// Retrieve all users type of prof from the database.
+exports.getStudentAssignmentRendu = async (req, res) => {
+    try {
+        const assignment = await AssignmentModel.find({auteur: req.params.id, rendu:true}).populate({path:'auteur', populate:{path:'profil'}}).populate({path:'matiere', populate:{path:'prof'}});
+        res.status(200).json(assignment);
+    } catch(error) {
+        res.status(404).json({message: error.message});
+    }
+};
+
+// Retrieve all users type of prof from the database.
+exports.getStudentAssignmentNonRendu = async (req, res) => {
+    try {
+        const assignment = await AssignmentModel.find({auteur: req.params.id, rendu:false}).populate({path:'auteur', populate:{path:'profil'}}).populate({path:'matiere', populate:{path:'prof'}});
+        res.status(200).json(assignment);
+    } catch(error) {
+        res.status(404).json({message: error.message});
+    }
+};
