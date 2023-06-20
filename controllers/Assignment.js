@@ -1,4 +1,5 @@
 const AssignmentModel = require('../model/assignment')
+var mongoose = require('mongoose');
 
 // Create and Save a new user
 exports.createAssignment = async (req, res) => {
@@ -125,4 +126,57 @@ exports.getStudentAssignmentNonRendu = async (req, res) => {
     } catch(error) {
         res.status(404).json({message: error.message});
     }
+};
+
+//GENARATE ASSIGNEMENT
+
+exports.generateAssignment = async (req, res) => {
+    for (let pass = 0; pass < 100; pass++) {
+        const assignment = new AssignmentModel({
+            nom: "Technologie web "+pass,
+            fichierSujet: "techno"+pass+".doc",
+            auteur: '648fbd04fc44df1a4e163c08',
+            matiere: '648dfb8f62608869735ecfb1',
+            rendu: false
+        });
+    await assignment.save();
+    }
+
+    for (let pass = 100; pass < 200; pass++) {
+        const assignment = new AssignmentModel({
+            nom: "BDD "+pass,
+            fichierSujet: "bdd"+pass+".doc",
+            fichierReponse :"bddR"+pass+".doc",
+            auteur: '648fbd04fc44df1a4e163c08',
+            matiere: '6490a8204bb30a1f6a265c41',
+            note: pass/10, rendu:true, dateRendu: new Date(), remarque: "OK"
+        });
+    await assignment.save();
+    }
+
+    for (let pass = 200; pass < 300; pass++) {
+        const assignment = new AssignmentModel({
+            nom: "Grails "+pass,
+            fichierSujet: "grails"+pass+".doc",
+            auteur: '64909f3caf41ba441ba3d40a',
+            matiere: '6490a87b4bb30a1f6a265c42',
+            rendu: false
+        });
+    await assignment.save();
+    }
+
+    for (let pass = 300; pass < 400; pass++) {
+        const assignment = new AssignmentModel({
+            nom: "BDD "+pass,
+            fichierSujet: "bdd"+pass+".doc",
+            fichierReponse :"bddR"+pass+".doc",
+            auteur: '64909f3caf41ba441ba3d40a',
+            matiere: '6490a8204bb30a1f6a265c41',
+            note: pass/100, 
+            rendu:true, 
+            dateRendu: new Date(), 
+            remarque: "Bien fait"
+        });
+    await assignment.save();
+    }    
 };

@@ -9,5 +9,6 @@ router.patch('/note/:id', AssignmentController.noteAssignment);
 router.delete('/:id', AssignmentController.destroy);
 router.get('/rendu/:id', AssignmentController.getStudentAssignmentRendu);
 router.get('/non-rendu/:id', AssignmentController.getStudentAssignmentNonRendu);
+router.post('/insertMultiple', AssignmentController.generateAssignment);
 
 module.exports = router

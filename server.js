@@ -6,9 +6,18 @@ const UserRoute = require('./routes/Utilisateur');
 const ProfilRoute = require('./routes/Profil');
 const MatiereRoute = require('./routes/Matiere');
 const AssignmentRoute = require('./routes/Assignment');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const corsOpts = {
+    origin: '*',
+    methods: ['GET','POST','PATCH','PUT','DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  };
+  
+app.use(cors(corsOpts));
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
